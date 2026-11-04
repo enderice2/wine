@@ -13,4 +13,5 @@ SOURCES = \
 	explorer.c \
 	explorer.rc \
 	startmenu.c \
-	systray.c
+	systray.c \
+	progman.c

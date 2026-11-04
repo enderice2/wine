@@ -21,6 +21,7 @@
 #ifndef __WINE_EXPLORER_PRIVATE_H
 #define __WINE_EXPLORER_PRIVATE_H
 
+extern HWND create_progman_window(void);
 extern void manage_desktop( WCHAR *arg );
 extern void initialize_systray( BOOL using_root, BOOL enable_shell, BOOL show_systray, BOOL no_tray_items );
 extern void initialize_appbar(void);

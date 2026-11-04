@@ -1316,6 +1316,9 @@ void manage_desktop( WCHAR *arg )
         }
     }
 
+    if (hwnd && !create_progman_window())
+        WARN("failed to initialize Progman\n");
+
     desktopshellbrowserwindow_init();
     shellwindows_init();
 

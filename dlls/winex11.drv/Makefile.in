@@ -28,4 +28,5 @@ SOURCES = \
 	xinerama.c \
 	xrandr.c \
 	xrender.c \
-	xvidmode.c
+	xvidmode.c \
+	wpe.c

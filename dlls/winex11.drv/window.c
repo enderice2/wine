@@ -2371,7 +2371,8 @@ Window create_client_window( HWND hwnd, RECT client_rect, const XVisualInfo *vis
 {
     struct x11drv_win_data *data = get_win_data( hwnd ), dummy = {0};
     XSetWindowAttributes attr;
-    Window ret;
+    BOOL wpe_renderer;
+    Window ret, parent;
     int x, y, cx, cy;
 
     if (!data) data = &dummy; /* use a dummy window data for HWND_MESSAGE and foreign windows, to create an offscreen client window */
@@ -2389,14 +2390,19 @@ Window create_client_window( HWND hwnd, RECT client_rect, const XVisualInfo *vis
     cx = min( max( 1, client_rect.right - client_rect.left ), 65535 );
     cy = min( max( 1, client_rect.bottom - client_rect.top ), 65535 );
 
+    wpe_renderer = is_wpe_renderer(hwnd);
     XSync( gdi_display, False ); /* make sure whole_window is known from gdi_display */
+    parent = wpe_renderer ? DefaultRootWindow(gdi_display) :
+         (data->whole_window ? data->whole_window : get_dummy_parent());
     ret = data->client_window = XCreateWindow( gdi_display,
-                                               data->whole_window ? data->whole_window : get_dummy_parent(),
+                                               parent,
                                                x, y, cx, cy, 0, visual->depth, InputOutput,
                                                visual->visual, CWBitGravity | CWWinGravity |
                                                CWBackingStore | CWColormap | CWBorderPixel, &attr );
     if (data->client_window)
     {
+        if (wpe_renderer)
+            configure_wpe_renderer( gdi_display, data );
         XMapWindow( gdi_display, data->client_window );
         if (data->whole_window)
         {
@@ -2583,6 +2589,7 @@ void X11DRV_SetWindowText( HWND hwnd, LPCWSTR text )
     {
         Display *display = thread_init_display();
         sync_window_text( display, win, text );
+        detect_wallpaper_host( display, win, hwnd, text );
         XFlush( display );
     }
 }

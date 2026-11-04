@@ -1031,4 +1031,8 @@ static inline UINT asciiz_to_unicode( WCHAR *dst, const char *src )
     return (p - dst) * sizeof(WCHAR);
 }
 
+extern BOOL is_wpe_renderer(HWND hwnd);
+extern VOID configure_wpe_renderer(Display *gdi_display, struct x11drv_win_data *data);
+extern void detect_wallpaper_host(Display *display, Window win, HWND hwnd, LPCWSTR text);
+
 #endif  /* __WINE_X11DRV_H */

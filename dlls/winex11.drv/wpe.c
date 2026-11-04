@@ -103,11 +103,11 @@ static void set_wpe_skip_taskbar(Display *display, Window window)
 
 void configure_wpe_renderer(Display *gdi_display, struct x11drv_win_data *data)
 {
+    XWMHints hints = {0};
     set_wpe_renderer_class(gdi_display, data->client_window);
     set_wpe_renderer_type(gdi_display, data->client_window);
     set_wpe_skip_taskbar(gdi_display, data->client_window);
 
-    XWMHints hints = {0};
     hints.flags = StateHint;
     hints.initial_state = IconicState;
     XSetWMHints(gdi_display, data->client_window, &hints);

@@ -359,6 +359,8 @@ HKLM,%CurrentVersion%\Setup\WindowsFeatures\WindowsMediaVersion,,,"12.0.7601.188
 HKLM,%CurrentVersion%\Shell Extensions\Approved,,16
 HKLM,%CurrentVersion%\Time Zones,"SymbolicLinkValue",0x60000,"\Registry\Machine\%CurrentVersionNT%\Time Zones"
 HKLM,%CurrentVersion%\Uninstall,,16
+HKCU,%CurrentVersion%\Themes\Personalize,"AppsUseLightTheme",0x10003,0
+HKCU,%CurrentVersion%\Themes\Personalize,"SystemUsesLightTheme",0x10003,0
 HKLM,%CurrentVersionNT%,"InstallDate",0x10003,1273299354
 HKLM,%CurrentVersionNT%,"ProductId",,"12345-oem-0000001-54321"
 HKLM,%CurrentVersionNT%,"RegisteredOrganization",2,""
@@ -1029,7 +1031,7 @@ StartType=3
 ErrorControl=1
 
 [ThemeManager]
-HKCU,"Software\Microsoft\Windows\CurrentVersion\ThemeManager","ThemeActive",2,"1"
+HKCU,"Software\Microsoft\Windows\CurrentVersion\ThemeManager","ThemeActive",2,"0"
 HKCU,"Software\Microsoft\Windows\CurrentVersion\ThemeManager","DllName",2,"%10%\resources\themes\aero\aero.msstyles"
 HKCU,"Software\Microsoft\Windows\CurrentVersion\ThemeManager","ColorName",2,"Blue"
 HKCU,"Software\Microsoft\Windows\CurrentVersion\ThemeManager","SizeName",2,"NormalSize"
